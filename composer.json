@@ -1,0 +1,13 @@
+{
+    "name": "stagiaire/00_petite_annonce",
+    "description": "Projet de formatation en PHP orienté objet",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "alexandrebersihand",
+            "email": "a.bersihand@hotmail.fr"
+        }
+    ],
+    "require": {}
+}
