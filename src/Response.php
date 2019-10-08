@@ -1,12 +1,17 @@
 <?php
 
 // fonction Response
-class Response
-{
-    public function send(string $body, int $status=200)
-    {
-        http_response_code($status);
-        header('Content-type: text/plain');
-        echo $body;
+class Response {
+    private $body;
+    private $status;
+
+    public function __construct(string $body, int $status=200) {
+        $this->body = $body;
+        $this->status = $status;
+    }
+
+    public function send() {
+        http_response_code($this->status);
+        echo $this->body;
     }
 }
