@@ -1,20 +1,11 @@
 <?php
+// définition du repertoire racine
+define('SRC_DIR', __DIR__.'/../src');
 
-require_once '../src/Response.php';
-require_once '../src/UrlReader.php';
+require_once SRC_DIR.'/Application.php';
 
-// regarder dans l'URL
-$reader = new UrlReader();
 
-// ToDo /!\ : mettre la construction de la reposne dans une classe
-try {
-    $id = $reader->parse();
-    $response = new Response('Est ce que ça l\'fait..?? ouais, ouais, ouais !');
-}
-
-catch(Exception $e) {
-    $response = new Response('Erreur 404... ;(  ......Cette page n\'existe pas', 404);
-}
-
+$app = new Application();
+$response = $app->run();
 $response->send();
 
