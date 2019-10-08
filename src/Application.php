@@ -1,12 +1,11 @@
 <?php
-require_once SRC_DIR.'/AnnonceLoader.php';
-require_once SRC_DIR.'/UrlReader.php';
-require_once SRC_DIR.'/Response.php';
+namespace App;
+
 
 class Application{
     public function run(): Response {
         // regarder dans l'URL
-        $config = json_decode(file_get_contents(SRC_DIR.'/../config/database.json'));
+        $config = json_decode(file_get_contents(__DIR__.'/../config/database.json'));
         $connexion = new DatabaseConnexion(
             $config->dsn,
             $config->username,

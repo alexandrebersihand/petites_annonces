@@ -1,6 +1,5 @@
 <?php
-require_once SRC_DIR.'/Annonce.php';
-require_once SRC_DIR.'/DatabaseConnexion.php';
+namespace App;
 
 class Annonceloader{
 
@@ -13,15 +12,14 @@ class Annonceloader{
 
     public function load(int $id): Annonce {
         $statement = $this->connexion->prepare(
-            'SELECT id, title, content, publishedAt FROM Annonce WHERE id=:$id'
+            'SELECT id, title, content, publishAt FROM Annonce WHERE id=:id'
         );
 
-        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
         $statement->execute();
 
         $annonce = $statement->fetchObject(Annonce::class);
 //      return $statement->fetchObject('Annonce');      idem ligne du dessus
         return $annonce;
-
     }
 }

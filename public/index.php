@@ -1,9 +1,12 @@
 <?php
-// définition du repertoire racine
-define('SRC_DIR', __DIR__.'/../src');
-require_once SRC_DIR.'/Application.php';
+require __DIR__.'/../vendor/autoload.php';
 
-$app = new Application();
+// plus besoin d'utiliser ligne 5 et 6 grace a composer !
+// définition du repertoire racine
+// define('SRC_DIR', __DIR__.'/../src');
+
+
+$app = new App\Application();
 $response = $app->run();
 $response->send();
 
