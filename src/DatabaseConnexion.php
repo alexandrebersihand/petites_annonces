@@ -1,7 +1,18 @@
 <?php
 
 class DatabaseConnexion {
-    function connect(){
-        new PDO('mysql:host=localhost;dbname=petites_annonces', 'dawan', 'dawan');
+
+    private $dsn;
+    private $username;
+    private $password;
+
+    public function __construct(string $dsn, string $username, string $password){
+        $this->dsn = $dsn;
+        $this->username = $username;
+        $this->password = $password;
+    }
+    
+    public function connect(){
+        new PDO('$this->dsn', '$this->username', '$this->password');
     }
 }
