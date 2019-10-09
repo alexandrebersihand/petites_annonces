@@ -20,13 +20,13 @@ class Application{
             $id = $reader->parse();
             $loader = new AnnonceLoader($connexion);
             $annonce = $loader->load($id);
-            $response = new Response('Est ce que ça l\'fait..?? ouais, ouais, ouais !');
+            $annonceHtml = new \App\html\Annonce();
+            $response = new Response($annonceHtml->build($annonce));
         }
 
         catch(NotFoundException $e) {
             $response = new Response($e->getMessage(), 404);
         }
-
         return $response;
     }
 }
