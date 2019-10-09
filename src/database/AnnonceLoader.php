@@ -1,14 +1,14 @@
 <?php
-namespace App;
+namespace App\database;
 
+use App\Annonce;
 use App\Exception\NotFoundException;
 
-class Annonceloader{
+class AnnonceLoader{
 
     private $connexion;
 
     public function __construct(DatabaseConnexion $connexion) {
-        $connexion->connect();
         $this->connexion = $connexion->getPdo();
     }
 

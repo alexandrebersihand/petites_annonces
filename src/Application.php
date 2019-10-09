@@ -1,7 +1,9 @@
 <?php
 namespace App;
 
-
+use App\database\AnnonceLoader;
+use App\database\DatabaseConnexion;
+use App\html\Annonce as AnnonceHtml;
 use App\Exception\NotFoundException;
 
 class Application{
@@ -20,7 +22,7 @@ class Application{
             $id = $reader->parse();
             $loader = new AnnonceLoader($connexion);
             $annonce = $loader->load($id);
-            $annonceHtml = new \App\html\Annonce();
+            $annonceHtml = new AnnonceHtml();
             $response = new Response($annonceHtml->build($annonce));
         }
 
