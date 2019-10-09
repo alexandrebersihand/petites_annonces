@@ -2,6 +2,8 @@
 namespace App;
 
 
+use App\Exception\NotFoundException;
+
 class Application{
     public function run(): Response {
         // regarder dans l'URL
@@ -21,8 +23,8 @@ class Application{
             $response = new Response('Est ce que ça l\'fait..?? ouais, ouais, ouais !');
         }
 
-        catch(Exception $e) {
-            $response = new Response('Erreur 404... ;(  ......Cette page n\'existe pas', 404);
+        catch(NotFoundException $e) {
+            $response = new Response($e->getMessage(), 404);
         }
 
         return $response;

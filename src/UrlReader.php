@@ -1,6 +1,8 @@
 <?php
 namespace App;
 
+use App\Exception\NotFoundException;
+
 class UrlReader
 {
     public function parse(): int {
@@ -14,7 +16,7 @@ class UrlReader
             return intval($uriParts[1]);
         }
         // pas d'url trouvé
-        throw new Exception('URL non reconnue');
+        throw new NotFoundException('URL non reconnue');
     }
 
     private function match(array $Parts): bool {

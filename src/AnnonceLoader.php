@@ -1,6 +1,8 @@
 <?php
 namespace App;
 
+use App\Exception\NotFoundException;
+
 class Annonceloader{
 
     private $connexion;
@@ -20,6 +22,10 @@ class Annonceloader{
 
         $annonce = $statement->fetchObject(Annonce::class);
 //      return $statement->fetchObject('Annonce');      idem ligne du dessus
+
+        if (!$annonce) {
+            throw new NotFoundException('Cette annonce n\'existe pas');
+        }
         return $annonce;
     }
 }
