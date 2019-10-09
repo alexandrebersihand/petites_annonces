@@ -1,5 +1,6 @@
 <?php
 namespace App;
+
 // fonction Response
 class Response {
     private $body;
