@@ -3,14 +3,14 @@ namespace App;
 
 use App\database\AnnonceLoader;
 use App\database\DatabaseConnexion;
-use App\html\Annonce as AnnonceHtml;
 use App\Exception\NotFoundException;
+use App\html\Annonce as AnnonceHtml;
 
 class Application{
     public function run(): Response {
         // regarder dans l'URL
         $config = json_decode(file_get_contents(__DIR__.'/../config/database.json'));
-        $connexion = new DatabaseConnexion(
+        $connection = new DatabaseConnexion(
             $config->dsn,
             $config->username,
             $config->password
@@ -19,11 +19,12 @@ class Application{
         $reader = new UrlReader();
 
         try {
-            $id = $reader->parse();
-            $loader = new AnnonceLoader($connexion);
-            $annonce = $loader->load($id);
-            $annonceHtml = new AnnonceHtml();
-            $response = new Response($annonceHtml->build($annonce));
+            $config = $reader->parse();
+            $controller = new Controller($connection);
+            $response = call_user_func_array(
+                [$controller, $config->getMethod()],
+                $config->getArgs()
+            );
         }
 
         catch(NotFoundException $e) {

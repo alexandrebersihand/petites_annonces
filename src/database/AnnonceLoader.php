@@ -19,7 +19,6 @@ class AnnonceLoader{
 
         $statement->bindValue(':id', $id, \PDO::PARAM_INT);
         $statement->execute();
-
         $annonce = $statement->fetchObject(Annonce::class);
 //      return $statement->fetchObject('Annonce');      idem ligne du dessus
 
@@ -27,5 +26,15 @@ class AnnonceLoader{
             throw new NotFoundException('Cette annonce n\'existe pas');
         }
         return $annonce;
+    }
+
+    public function loadAll() {
+        $statement = $this->connexion->prepare(
+            'SELECT id, title, content, publishAt FROM Annonce'
+        );
+
+        $statement->execute();
+        $annonces = $statement->fetchAll(\PDO::FETCH_CLASS, "App\Annonce");
+        return $annonces;
     }
 }
