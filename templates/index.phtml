@@ -11,7 +11,7 @@
 
 <h1>Ma liste d'annonce</h1>
 <ul>
-    <?php foreach ($annonces as $annonce):?>
+    <?php foreach ($data['annonces'] as $annonce):?>
         <li>
             <a href="/annonce/<?= $annonce->id ?>"><?= $annonce->title ?></a>
         </li>

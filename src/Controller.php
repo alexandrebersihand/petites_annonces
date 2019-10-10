@@ -32,13 +32,19 @@ class Controller
     public function show(int $id): Response
     {
         $annonce = $this->loader->load($id);
-        return new Response($this->annonceHtml->build($annonce));
+        return new Response($this->annonceHtml->loadTemplate(
+            '/templates/annonce.phtml',
+            ['annonce' => $annonce,]
+        ));
     }
     /// fonction pour lister les annonces
     public function index(): Response
     {
         $annonces = $this->loader->loadAll();
-        return new Response($this->annonceHtml->buildAll($annonces));
+        return new Response($this->annonceHtml->loadTemplate(
+            '/templates/index.phtml',
+            ['annonces' => $annonces,]
+        ));
     }
 
 }
