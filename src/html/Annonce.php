@@ -5,7 +5,6 @@ namespace App\html;
 
 
 class Annonce
-
 {
     public function loadTemplate(string $path, array $data)
     {
